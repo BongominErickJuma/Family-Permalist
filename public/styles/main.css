@@ -67,6 +67,9 @@ form.edit {
   .item-title{
     font-size: .75rem;
   }
+  #heading h1{
+    font-size: 1rem;
+  }
 }
 .item-title, .input-bar{
   color: teal;
