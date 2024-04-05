@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=McLaren&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+html {
+  background-color: #e4e9fd;
+  background-image:url("../assets/background1.jpg");
+  min-height: 1000px;
+  font-family: "Montserrat", sans-serif;
+  background-size: cover;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  min-height: 95vh;
+}
+main {
+  text-align: center;
+  flex: 1 0 auto;
+}
+h1 {
+  padding: .5em;
+}
+
+.box {
+  max-width: 400px;
+  margin: 50px auto;
+  border-radius: 5px;
+}
+
+#heading {
+  text-align: center;
+  background-color: #f5ba13;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+#heading h1{
+  font-weight: normal;
+  text-transform: capitalize;
+}
+form.edit {
+  display: flex;
+}
+
+.show-title{
+  color: #00204a;
+  
+}
+
+.item {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-radius: 7px;
+  padding-left: 50px;
+  background-color: #ffffff;
+  background-image: linear-gradient(to right, #f5ba13, #c99507); 
+  background-size: 50px auto;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  box-shadow: 0 5px 7px -1px rgba(51, 51, 51, 0.23);
+}
+.item-title, .input-bar{
+  color: teal;
+  font-family: "McLaren", sans-serif;
+
+}
+
+.input-form{
+  margin: 0 ;
+}
+.item:last-child {
+  border-bottom: 0;
+}
+
+input[type="checkbox"] {
+  margin: 20px;
+  margin-left: 0;
+}
+
+p {
+  margin: 0;
+  padding: 20px 0;
+  font-size: 20px;
+  color: #00204a;
+}
+
+form {
+  text-align: center;
+  margin-left: 20px;
+}
+
+button{
+  cursor: pointer;
+}
+
+button.add {
+  min-height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border-color: transparent;
+  background-color: #f5ba13;
+  color: #fff;
+  font-size: 30px;
+  border-width: 0;
+}
+
+button.edit {
+  margin-left: 0px;
+  margin-right: 20px;
+  border: none;
+  background: none;
+}
+
+button.remove{
+  padding: .5em .75em;
+  margin-bottom: 2rem;
+  border: none;
+  font-family: inherit;
+  font-size: 1.25rem;
+  border-radius: .25rem;
+  font-family: "McLaren", sans-serif;
+  background-color: teal;
+  border-radius: .75em;
+}
+button.remove:hover{
+  background-color: salmon;
+  color: wheat;
+}
+
+.icon {
+  height: 20px;
+}
+
+input[type="text"] {
+  text-align: left;
+  height: 60px;
+  top: 10px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  font-weight: 200;
+  width: 80%;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+::placeholder {
+  color: lightgray;
+  opacity: 1;
+}
+
+footer {
+  flex: 0 0 auto;
+  color: #00204a;
+  text-align: center;
+  font-family: "McLaren", sans-serif;
+}
+
+
+/* table view */
+
+
+.tab-view {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  font-size: 0;
+  text-align: left;
+  font-family: "McLaren", sans-serif;
+}
+.tab-view > input {
+  position: absolute;
+  display: none;
+}
+.tab-view > label {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -ms-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+}
+.tab-view > label {
+  padding: 0 20px;
+  background: #e5e5e5;
+  font-size: 13px;
+  line-height: 49px;
+  background-color: teal;
+  margin: .25em;
+  border-radius: .75em;
+}

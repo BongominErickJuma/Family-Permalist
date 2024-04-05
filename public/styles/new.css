@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=McLaren&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #e4e9fd;
+  background-image:url("../assets/background1.jpg");
+  min-height: 1000px;
+  background-size: cover;
+}
+body {
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  transform: translate(-35%, -35%);
+  font-family: "McLaren", sans-serif;
+  text-align: center;
+  
+}
+input{
+  font-family: "McLaren", sans-serif;
+}
+input[type="radio"] {
+  display: none;
+}
+input[type="radio"]:checked + label span {
+  transform: scale(1.25);
+}
+input[type="radio"]:checked + label .red {
+  border: 2px solid #711313;
+}
+input[type="radio"]:checked + label .orange {
+  border: 2px solid #873a08;
+}
+input[type="radio"]:checked + label .grey {
+  border: 2px solid #f0f0f0;
+}
+input[type="radio"]:checked + label .olive {
+  border: 2px solid #505a0b;
+}
+input[type="radio"]:checked + label .green {
+  border: 2px solid #0e4e1d;
+}
+input[type="radio"]:checked + label .teal {
+  border: 2px solid #003633;
+}
+input[type="radio"]:checked + label .blue {
+  border: 2px solid #b0e0e6;
+}
+input[type="radio"]:checked + label .violet {
+  border: 2px solid #321a64;
+}
+input[type="radio"]:checked + label .purple {
+  border: 2px solid #501962;
+}
+input[type="radio"]:checked + label .pink {
+  border: 2px solid #851554;
+}
+label {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+label:hover span {
+  transform: scale(1.25);
+}
+label span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s ease-in-out;
+  font-family: "McLaren", sans-serif;
+}
+label span.red {
+  background: #db2828;
+}
+label span.orange {
+  background: #f2711c;
+}
+label span.grey {
+  background: #f0f0f0;
+}
+label span.olive {
+  background: #b5cc18;
+}
+label span.green {
+  background: #90ee90;
+}
+label span.teal {
+  background: #6a5acd;
+}
+label span.blue {
+  background: #b0e0e6;
+}
+label span.violet {
+  background: #6435c9;
+}
+label span.coral {
+  background: #f08080;
+}
+label span.pink {
+  background: #e03997;
+}
+
+button{
+  background-color: black;
+  color: white;
+  border: none;
+  margin-top: 1rem;
+  padding: .25em 1em;
+  font-family: inherit;
+}
