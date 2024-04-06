@@ -76,12 +76,12 @@ async function checkTodos() {
 async function getCurrentUser() {
   const result = await db.query("SELECT * FROM todo_users");
   const users = result.rows;
+  const id = users[0].id;
   const user = users.find((user) => user.id == currentUserId);
 
   if (user) {
     return user;
   } else {
-    const id = users[0].id;
     currentUserId = id;
     return users.find((user) => user.id == currentUserId);
   }
