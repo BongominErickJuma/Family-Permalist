@@ -75,8 +75,16 @@ async function checkTodos() {
 
 async function getCurrentUser() {
   const result = await db.query("SELECT * FROM todo_users");
-  users = result.rows;
-  return users.find((user) => user.id == currentUserId);
+  const users = result.rows;
+  const user = users.find((user) => user.id == currentUserId);
+
+  if (user) {
+    return user;
+  } else {
+    const id = users[0].id;
+    currentUserId = id;
+    return users.find((user) => user.id == currentUserId);
+  }
 }
 
 function capitalizeFirstLetter(string) {
