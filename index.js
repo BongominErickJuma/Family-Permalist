@@ -199,7 +199,7 @@ app.post("/remove", async (req, res) => {
     const currentUser = await getCurrentUser();
 
     await db.query(
-      "DELETE FROM todos WHERE user_id = (SELECT id FROM users WHERE name = $1)",
+      "DELETE FROM todos WHERE user_id = (SELECT id FROM todo_users WHERE name = $1)",
       [currentUser.name]
     );
     await db.query("DELETE FROM todo_users WHERE name = $1;", [
