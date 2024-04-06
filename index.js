@@ -1,10 +1,11 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import env from "dotenv";
 
 const app = express();
 const port = 3000;
-
+env.config();
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -64,6 +65,7 @@ db.query("SELECT * FROM todo_users", (err, res) => {
     }
   }
 });
+
 async function checkTodos() {
   const result = await db.query(
     "SELECT t.id, t.title FROM todos t JOIN todo_users u ON u.id = t.user_id WHERE user_id = $1 ORDER BY t.id ASC",
@@ -75,14 +77,14 @@ async function checkTodos() {
 
 async function getCurrentUser() {
   const result = await db.query("SELECT * FROM todo_users");
-  const users = result.rows;
-  const id = users[0].id;
+  users = result.rows;
+
   const user = users.find((user) => user.id == currentUserId);
 
   if (user) {
-    return user;
+    return users.find((user) => user.id == currentUserId);
   } else {
-    currentUserId = id;
+    currentUserId = result.rows[0].id;
     return users.find((user) => user.id == currentUserId);
   }
 }
