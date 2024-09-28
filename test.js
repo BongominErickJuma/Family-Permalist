@@ -19,38 +19,6 @@ const db = new pg.Client({
 });
 db.connect();
 
-const createUsersTable = `
-    CREATE TABLE IF NOT EXISTS todo_users (
-        id SERIAL PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        color varchar(15)
-    );
-`;
-
-const createTaskTable = `
-CREATE TABLE IF NOT EXISTS todos(
-  id SERIAL PRIMARY KEY,
-  title CHAR(255) NOT NULL,
-  user_id INTEGER REFERENCES todo_users(id)
-  );
-`;
-
-db.query(createUsersTable, (err) => {
-  if (err) {
-    console.error("Error creating users table:", err);
-  } else {
-    console.log("Users table created successfully!");
-  }
-});
-
-db.query(createTaskTable, (err) => {
-  if (err) {
-    console.error("Error creating Task table:", err);
-  } else {
-    console.log("Task table created successfully!");
-  }
-});
-
 let currentUserId;
 
 let users = [];
@@ -83,6 +51,9 @@ async function getCurrentUser() {
   const user = users.find((user) => user.id == currentUserId);
 
   if (user) {
+    return users.find((user) => user.id == currentUserId);
+  } else {
+    currentUserId = result.rows[0].id;
     return users.find((user) => user.id == currentUserId);
   }
 }
