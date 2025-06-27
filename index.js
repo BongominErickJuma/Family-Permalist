@@ -16,7 +16,11 @@ const db = new pg.Client({
   database: process.env.PG_DATABASE,
   password: process.env.PG_PASSWORD,
   port: process.env.PG_PORT,
+  ssl: {
+    rejectUnauthorized: false, // Required for Neon
+  },
 });
+
 db.connect();
 
 const createUsersTable = `
@@ -88,8 +92,7 @@ async function getCurrentUser() {
 }
 
 function capitalizeFirstLetter(string) {
-  const capitalized =
-    string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  const capitalized = string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   return capitalized;
 }
 
@@ -124,10 +127,7 @@ app.post("/add", async (req, res) => {
   const input = req.body.newItem;
   const currentUser = await getCurrentUser();
   try {
-    await db.query("INSERT INTO todos (title, user_id) VALUES ($1, $2)", [
-      input,
-      currentUser.id,
-    ]);
+    await db.query("INSERT INTO todos (title, user_id) VALUES ($1, $2)", [input, currentUser.id]);
     res.redirect("/");
   } catch (err) {
     console.log(err);
@@ -140,10 +140,7 @@ app.post("/edit", async (req, res) => {
   let title = req.body.updatedItemTitle;
 
   try {
-    await db.query("UPDATE todos SET title = ($1) WHERE id = ($2)", [
-      title,
-      id,
-    ]);
+    await db.query("UPDATE todos SET title = ($1) WHERE id = ($2)", [title, id]);
     res.redirect("/");
   } catch (error) {
     console.log(error);
@@ -179,18 +176,15 @@ app.post("/new", async (req, res) => {
     if (name === "" || name.length > 100) {
       res.redirect("/");
     } else {
-      const resultCheck = await db.query(
-        "SELECT name FROM todo_users WHERE name = $1",
-        [name]
-      );
+      const resultCheck = await db.query("SELECT name FROM todo_users WHERE name = $1", [name]);
 
       if (resultCheck.rows.length !== 0) {
         res.redirect("/");
       } else {
-        const result = await db.query(
-          "INSERT INTO todo_users (name, color) VALUES($1, $2) RETURNING *;",
-          [name, color]
-        );
+        const result = await db.query("INSERT INTO todo_users (name, color) VALUES($1, $2) RETURNING *;", [
+          name,
+          color,
+        ]);
 
         const id = result.rows[0].id;
         currentUserId = id;
@@ -206,13 +200,8 @@ app.post("/remove", async (req, res) => {
   try {
     const currentUser = await getCurrentUser();
 
-    await db.query(
-      "DELETE FROM todos WHERE user_id = (SELECT id FROM todo_users WHERE name = $1)",
-      [currentUser.name]
-    );
-    await db.query("DELETE FROM todo_users WHERE name = $1;", [
-      currentUser.name,
-    ]);
+    await db.query("DELETE FROM todos WHERE user_id = (SELECT id FROM todo_users WHERE name = $1)", [currentUser.name]);
+    await db.query("DELETE FROM todo_users WHERE name = $1;", [currentUser.name]);
 
     const result = await db.query("SELECT * FROM todo_users");
 
