@@ -16,9 +16,9 @@ const db = new pg.Client({
   database: process.env.PG_DATABASE,
   password: process.env.PG_PASSWORD,
   port: process.env.PG_PORT,
-  ssl: {
-    rejectUnauthorized: false, // Required for Neon
-  },
+  ssl: { rejectUnauthorized: false },
+  // 👇 Force PostgreSQL to only look in 'public'
+  options: '-c search_path=public',
 });
 
 db.connect();
